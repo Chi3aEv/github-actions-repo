@@ -21,6 +21,9 @@ RUN npm ci --omit=dev
 
 COPY src/ ./src/
 
+RUN npm link
+
 USER node
 
-CMD ["node", "src/index.js"]
+ENTRYPOINT ["devops-ai"]
+CMD ["help"]

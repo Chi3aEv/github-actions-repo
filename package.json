@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "AI tool for DevOps engineers - analyzes CI/CD pipelines, suggests fixes, and automates workflows",
   "main": "src/index.js",
+  "bin": {
+    "devops-ai": "src/index.js"
+  },
   "scripts": {
     "start": "node src/index.js",
     "test": "jest --coverage",

@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 const axios = require("axios");
 
 /**
@@ -99,3 +100,32 @@ function generateReport(pipelineName, issues, errors) {
 }
 
 module.exports = { analyzePipeline, parseLogErrors, getAISuggestions, generateReport };
+
+// CLI entry point
+if (require.main === module) {
+  const [,, command, ...args] = process.argv;
+
+  const commands = {
+    analyze: () => {
+      const config = JSON.parse(args[0] || "{}");
+      const issues = analyzePipeline(config);
+      console.log(JSON.stringify(generateReport("cli", issues, []), null, 2));
+    },
+    "parse-logs": () => {
+      const errors = parseLogErrors(args[0] || "");
+      console.log(JSON.stringify(errors, null, 2));
+    },
+    help: () => {
+      console.log("Usage: devops-ai <command> [args]");
+      console.log("  analyze '<json>'    Analyze a pipeline config JSON");
+      console.log("  parse-logs '<logs>' Extract errors from log string");
+    },
+  };
+
+  if (commands[command]) {
+    commands[command]();
+  } else {
+    commands.help();
+    process.exit(1);
+  }
+}

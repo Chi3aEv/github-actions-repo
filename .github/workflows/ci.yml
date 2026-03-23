@@ -1,0 +1,14 @@
+name : Running CI for testing hello Chintamani!
+on:
+    push:
+        branches: 
+            ci-branch
+    pull_request:
+        branches:
+            ci-branch
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - name: hello chintamani!
+              run: echo "Hello Chintamani! from ci-branch"

@@ -1,0 +1,22 @@
+{
+  "name": "devops-ai-tool",
+  "version": "1.0.0",
+  "description": "AI tool for DevOps engineers - analyzes CI/CD pipelines, suggests fixes, and automates workflows",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "jest --coverage",
+    "lint": "eslint src/"
+  },
+  "dependencies": {
+    "axios": "^1.6.0"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "coverageDirectory": "coverage",
+    "collectCoverageFrom": ["src/**/*.js"]
+  }
+}
